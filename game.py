@@ -1,4 +1,6 @@
 from player import HumanPlayer, RandomComputerPlayer
+import time
+
 
 class TicTacToe:
     def __init__(self):
@@ -33,24 +35,20 @@ class TicTacToe:
         return False
 
     def winner(self, square, letter):
-        #checks for 3 in a row anywhere. check the row:
         row_ind = square // 3
         row = self.board[row_ind*3: (row_ind + 1) * 3]
         if all([spot == letter for spot in row]):
             return True
 
-        #check column
         col_ind = square % 3
         column = [self.board[col_ind+i*3] for i in range(3)]
         if all([spot == letter for spot in column]):
             return True
-        
-        #check diagnols: square has to be a even number bc these are the onlu moves possible to win a diagnol. 
-        if square %2 == 0:
-            diagonal_1 = [self.board[i] for i in [0,4,8]] # left to right diagonal
+        if square % 2 == 0:
+            diagonal_1 = [self.board[i] for i in [0, 4, 8]]
             if all([spot == letter for spot in diagonal_1]):
-                return True 
-            diagonal_2 = [self.board[i] for i in [2,4,6]] # right to left diagonal
+                return True
+            diagonal_2 = [self.board[i] for i in [2, 4, 6]]
             if all([spot == letter for spot in diagonal_2]):
                 return True
 
@@ -81,8 +79,11 @@ def play(game, x_player, o_player, print_game=True):
 
             letter = 'o' if letter == 'x' else 'x'
 
-        if print_game:
-            print('IT\'S A TIE!')
+        time.sleep(1)
+
+    if print_game:
+        print('IT\'S A TIE!')
+
 
 if __name__ == '__main__':
     x_player = HumanPlayer('X')

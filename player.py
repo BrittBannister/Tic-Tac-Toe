@@ -1,13 +1,10 @@
-import math
 import random
 
 
 class Player:
     def __init__(self, letter):
-        #letter is an x or o 
         self.letter = letter
 
-    # want players to get their next move given in a game.
     def get_move(self, game):
         pass
 
@@ -29,7 +26,7 @@ class HumanPlayer(Player):
         valid_square = False
         val = None
         while not valid_square:
-            square = input(self.letter + '\'s. Input move (0-9):')
+            square = input(self.letter + '\'s. Input move (0-8):')
             try:
                 val = int(square)
                 if val not in game.available_moves():
@@ -39,4 +36,3 @@ class HumanPlayer(Player):
                 print('Invalid square! Please try again.')
 
         return val
-
